@@ -1,9 +1,9 @@
 (function($) {
-	
+
 	/**
 	 * Animates element text.
 	 *
-	 * @credits 	Coded by @danieltamkin 					github.com/danieltamkin
+	 * @credits 	@danieltamkin 									github.com/danieltamkin
 	 * 						Peer-programmed by @darrenplace github.com/darrenplace
 	 * @version 	1.0.0
 	 * @return {TextScramble}
@@ -18,14 +18,24 @@
 		return this.each(function(key, element) {
 			let settings = $.extend({
 					// These are the defaults.
-					done: function(){console.log('done!');},
-					backgroundColor: "white"
+					done: function(){console.log('done!');}
 			}, options );
 			let dfd = $.Deferred();
 
-			// Prevent any collisions with context function context
+			/**
+			 * Prevent any collisions with function context.
+			 * @type {Object}
+			 */
 			let that = '';
+			/**
+			 * Allows us to target the element.
+			 * @type {jQuery}
+			 */
       element = $(element);
+			/**
+			 * Grab the elements original text.
+			 * @type {String}
+			 */
       let originalText = element.text();
 			/**
 			 * Full fledged class containing the glitch effect,
@@ -45,7 +55,7 @@
         }
         /**
          * Random Scramble
-         * @return {[type]}                [description]
+         * @return {Array}                List of chars randomized.
          */
         function initalizeScramble(){
           that.originalText = that.element.text();
@@ -57,24 +67,41 @@
         }
         /**
          * Randomly return a char from the set of chars defined
-         * @return {String}                [description]
+         * @return {String}                A char from that.chars
          */
         function randomChar() {
           return that.chars[Math.floor(Math.random() * that.chars.length)];
         }
-        function setCharAt(str,index,chr) {
+				/**
+				 * Updates a specific character from a given string with a supplied
+				 * char.
+				 *
+				 * @param {String}            str   The string we're updating.
+				 * @param {Int}               index The point of which updating occurs.
+				 * @param {String}            chr   The character we're replacing.
+				 * @credit {@darrenplace}
+				 */
+				function setCharAt(str,index,chr) {
           if(index > str.length-1) return str;
           return str.substr(0,index) + chr + str.substr(index+1);
         }
+				/**
+				 * Targets a specific char from that.originalText to glitch.
+				 *
+				 * @param  {Int}          		index location in that.originalText
+				 * 																	to which we will target.
+				 * @return {Promise}         	Resolves once the character has resolved
+				 * 													  it's originalText.
+				 */
         function animateChar(index){
           let dfd = $.Deferred();
           let timeDiff = Math.floor(Math.random() * 40) + 10;
           let animateAmount = Math.floor(Math.random() * 2) + 10;
-          // console.log("Determined time diff: ", timeDiff);
-          /**
-           * Animation effect
-           * @return {[type]}                [description]
-           */
+
+					/**
+					 * Animation effect served through setInterval.
+					 * @resolve 								When the original char was set.
+					 */
           let intervalSignit = setInterval(function(){
             if(animateAmount === 0){
               clearInterval(intervalSignit);
@@ -102,16 +129,29 @@
 
           return dfd.promise();
         }
+				/**
+				 * Obtains the randomly generated scrambledText.
+				 *
+				 * @scope  {global}
+				 * @return {String}                joins the scrambledText array.
+				 */
         TextScramble.prototype.getScrambledText = function(){
           return that.scrambledText.join("");
         }
+				/**
+				 * Executes the animation
+				 * @resolve 												When the elements text is
+				 * 																	originalText is set.
+				 * @return {Promise}                Passes a promise for chaining.
+				 */
         TextScramble.prototype.animate = function(){
           let dfd = $.Deferred();
           let promiseChain = [];
+
           /**
-           * Each character is animated on their own timeframe
-           * @param  {[type]}                var [description]
-           * @return {[type]}                    [description]
+           * Each character is animated on their own timeframe.
+           * A rough rendition of "randomly" animating the glitch effect.
+           * // TODO: Make this an effect
            */
           for (var i = 0; i < element.text().length; i++) {
             promiseChain.push(animateChar(i));
@@ -120,7 +160,6 @@
             .then(function(){
               dfd.resolve();
             })
-          // dfd.resolve();
           return dfd.promise();
         }
         return TextScramble;
