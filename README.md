@@ -17,6 +17,8 @@
 - [Documentation](#github-releases)
 </br></br></br>
 
+</br>
+
 ## TLDR;
 - It's a simple as calling `$("header").glitch();` to get started.
 - Checkout effects & Settings
