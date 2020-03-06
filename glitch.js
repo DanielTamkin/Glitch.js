@@ -18,6 +18,7 @@
 		return this.each(function(key, element) {
 			let settings = $.extend({
 				chars: '!<>-_\\/[]{}—=+*^?#________',
+				charTime: 10,
 				done: function(){console.log('done!');}
 			}, options );
 			let dfd = $.Deferred();
@@ -96,8 +97,8 @@
         function animateChar(index){
           let dfd = $.Deferred();
           let timeDiff = Math.floor(Math.random() * 40) + 10;
-          let animateAmount = Math.floor(Math.random() * 2) + 10;
-
+          let animateAmount = Math.floor(Math.random() * 2) + settings.charTime;
+					console.log(animateAmount);
 					/**
 					 * Animation effect served through setInterval.
 					 * @resolve 								When the original char was set.
