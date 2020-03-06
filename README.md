@@ -6,7 +6,7 @@
 
 🖇 A jQuery plugin intended for adding various "glitching" effects for visible text.
 
-<img align="right" src=".github/glitch-js.gif?raw=true" height="220">
+<img align="right" src=".github/glitch-js.gif?raw=true" height="340">
 
 - Settings
 - Highly configurable
@@ -15,8 +15,7 @@
 - [Tiny footprint](#publish-to-npm) (2kb)
 - [Changelog](#changelog)
 - [Documentation](#github-releases)
-
-
+</br></br></br>
 
 ## TLDR;
 - It's a simple as calling `$("header").glitch();` to get started.
