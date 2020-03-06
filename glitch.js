@@ -17,8 +17,8 @@
 		 */
 		return this.each(function(key, element) {
 			let settings = $.extend({
-					// These are the defaults.
-					done: function(){console.log('done!');}
+				chars: '!<>-_\\/[]{}—=+*^?#________',
+				done: function(){console.log('done!');}
 			}, options );
 			let dfd = $.Deferred();
 
@@ -48,7 +48,7 @@
         let that = {};
         function TextScramble (elementRefrence,chars) {
           if(chars === undefined){
-            that.chars = '!<>-_\\/[]{}—=+*^?#________';
+            that.chars = settings.chars;
           }
           that.element = elementRefrence;
           that.scrambledText = initalizeScramble();
@@ -159,7 +159,7 @@
           Promise.all(promiseChain)
             .then(function(){
               dfd.resolve();
-            })
+            });
           return dfd.promise();
         }
         return TextScramble;
