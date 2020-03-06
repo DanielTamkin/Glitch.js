@@ -28,11 +28,11 @@
   </summary>
 
 
-  - [Installation](URL)
-  - [Usage](URL)
-  - [Configuration](URL)
-  - [Documentation](URL)
-  - [Versions / Changelog](URL)
+  - [Installation](#Installation)
+  - [Usage](#Usage)
+  - [Configuration](#Configuration)
+  - [Documentation](#Documentation)
+  - [Versions / Changelog](#Changelog)
   - [Roadmap](URL)
 
   <div align="center">
@@ -45,7 +45,35 @@
 ## Installation
 `npm install glitch.js`
 ## Usage
+```Javascript
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("h1.glitch").glitch();
+  });
+</script>
+
+```
+# Documentation
 ## Configuration
-## Documentation
-## Versions / Changelog
+```Javascript
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("h1.glitch").glitch({
+        speed: 100,
+        timeDiff: 300,
+        done: function(element){
+          $(element).css("opacity","1");
+        }
+      });
+  });
+</script>
+```
+###### `speed` : [ms]
+Adjust the speed of the overall animation time.
+###### `timeDiff` : [ms]
+Adjust the difference it takes per letter to resolve to it's original letter.
+###### `done` : [function(element)]
+Callback fired once the animation is done, the target element is passed back for further control.
+## Changelog
+###### Versions
 ### Roadmap
