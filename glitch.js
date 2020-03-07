@@ -98,7 +98,11 @@
           let dfd = $.Deferred();
           let timeDiff = Math.floor(Math.random() * 40) + 10;
           let animateAmount = Math.floor(Math.random() * 2) + settings.charTime;
-					console.log(animateAmount);
+
+					// TODO: @darrenplace would love if we converted this to a fps specifc
+					// algorythim
+
+					//
 					/**
 					 * Animation effect served through setInterval.
 					 * @resolve 								When the original char was set.
