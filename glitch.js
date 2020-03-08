@@ -19,6 +19,7 @@
 			let settings = $.extend({
 				chars: '!<>-_\\/[]{}—=+*^?#________',
 				charTime: 10,
+				finalText: undefined,
 				done: function(){console.log('done!');}
 			}, options );
 			let dfd = $.Deferred();
@@ -52,6 +53,7 @@
             that.chars = settings.chars;
           }
           that.element = elementRefrence;
+					that.originalText = settings.finalText || elementRefrence.text();
           that.scrambledText = initalizeScramble();
         }
         /**
@@ -59,7 +61,6 @@
          * @return {Array}                List of chars randomized.
          */
         function initalizeScramble(){
-          that.originalText = that.element.text();
           let scrambleSet = []
           for (var i = 0; i < that.originalText.length; i++) {
             scrambleSet.push(randomChar())
