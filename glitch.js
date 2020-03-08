@@ -6,7 +6,7 @@
 	 * @credits 	@danieltamkin 									github.com/danieltamkin
 	 * 						Peer-programmed by @darrenplace github.com/darrenplace
 	 * @version 	1.0.0
-	 * @return {TextScramble}
+	 * @return 	 	{settings.done()}
 	 */
 	$.fn.glitch = function(options) {
 		/**
@@ -17,8 +17,10 @@
 		 */
 		return this.each(function(key, element) {
 			let settings = $.extend({
-					// These are the defaults.
-					done: function(){console.log('done!');}
+				chars: '!<>-_\\/[]{}—=+*^?#________',
+				charTime: 10,
+				finalText: undefined,
+				done: function(){console.log('done!');}
 			}, options );
 			let dfd = $.Deferred();
 
@@ -48,9 +50,10 @@
         let that = {};
         function TextScramble (elementRefrence,chars) {
           if(chars === undefined){
-            that.chars = '!<>-_\\/[]{}—=+*^?#________';
+            that.chars = settings.chars;
           }
           that.element = elementRefrence;
+					that.originalText = settings.finalText || elementRefrence.text();
           that.scrambledText = initalizeScramble();
         }
         /**
@@ -58,7 +61,6 @@
          * @return {Array}                List of chars randomized.
          */
         function initalizeScramble(){
-          that.originalText = that.element.text();
           let scrambleSet = []
           for (var i = 0; i < that.originalText.length; i++) {
             scrambleSet.push(randomChar())
@@ -96,8 +98,12 @@
         function animateChar(index){
           let dfd = $.Deferred();
           let timeDiff = Math.floor(Math.random() * 40) + 10;
-          let animateAmount = Math.floor(Math.random() * 2) + 10;
+          let animateAmount = Math.floor(Math.random() * 2) + settings.charTime;
 
+					// TODO: @darrenplace would love if we converted this to a fps specifc
+					// algorythim
+
+					//
 					/**
 					 * Animation effect served through setInterval.
 					 * @resolve 								When the original char was set.
@@ -159,7 +165,7 @@
           Promise.all(promiseChain)
             .then(function(){
               dfd.resolve();
-            })
+            });
           return dfd.promise();
         }
         return TextScramble;
