@@ -6,7 +6,7 @@
 	 * @credits 	@danieltamkin 									github.com/danieltamkin
 	 * 						Peer-programmed by @darrenplace github.com/darrenplace
 	 * @version 	1.0.0
-	 * @return {TextScramble}
+	 * @return 	 	{settings.done()}
 	 */
 	$.fn.glitch = function(options) {
 		/**
