@@ -62,6 +62,7 @@
     $("h1.glitch").glitch({
         speed: 100,
         timeDiff: 300,
+        charTime: 10,
         done: function(element){
           $(element).css("opacity","1");
         }
@@ -69,10 +70,16 @@
   });
 </script>
 ```
+###### `chars` : [string]
+Alter the characters used for the glitch animation.
+Default: `!<>-_\\/[]{}—=+*^?#________`
 ###### `speed` : [ms]
-Adjust the speed of the overall animation time.
-###### `timeDiff` : [ms]
+Adjust the speed of the overall animation timefor the element. Default ~400ms, variable for uniqueness.
+###### `charTime` : [ms]
 Adjust the difference it takes per letter to resolve to it's original letter.
+
+###### `finalText` : [string]
+Used if you want the element to resolve a different string after animation. Default: Original text the element possessed.
 ###### `done` : [function(element)]
 Callback fired once the animation is done, the target element is passed back for further control.
 ## Changelog
